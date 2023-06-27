@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.OpenApi.Models;
+using formapi.Model;
 using formapi.EFcore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<EFDataContext>(options =>
      options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
     );
 builder.Services.AddControllers();
+builder.Services.AddScoped<DbHelper>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
